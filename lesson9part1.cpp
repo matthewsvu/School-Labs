@@ -1,5 +1,7 @@
+/*
+Create a program that wiil
+*/
 #include <iostream>
-#include <string>
 #include <iomanip>
 #include <cmath>
 
@@ -35,22 +37,16 @@ int readSpools(int &numOrder, int &numStock, double &shipCharge)
         cout << "Shipping and handling amount" << endl;
         cin >> shipCharge;
         if(shipCharge > 0)
-            return 0;
+            break;
         while(shipCharge < 0)
         {
             cout << "The spool shipping and handling charge must be 0.0 or more" << endl;
             cout << "Shipping and handling amount" << endl;
             cin >> shipCharge;
         }
-        return 0;
-        break;
-    case 'n':
-        shipCharge = NORMAL_SHIPPING_CHARGE;
-        return 0;
         break;
     default:
         shipCharge = NORMAL_SHIPPING_CHARGE;
-        return 0;
         break;
     }
     return 0;
@@ -58,27 +54,26 @@ int readSpools(int &numOrder, int &numStock, double &shipCharge)
 
 void displaySpools(int numOrder, int numStock, double shipCharge)
 {
-    double subtotal = 0, total = 0;
     int backOrder = abs(numOrder - numStock), readyOrder = numOrder - backOrder;
     if(numStock > numOrder)
     {
         backOrder = 0;
         readyOrder = numOrder;
     }
+    double subtotal = SPOOL_CHARGE * readyOrder;
+    double total = subtotal + (shipCharge * readyOrder);
+    double shipCost = shipCharge * readyOrder;
     cout << "Spools ready to ship: " << readyOrder << endl;
     cout << "Spools on back-order: " << backOrder << endl;
-    subtotal = SPOOL_CHARGE * readyOrder;
     cout << fixed << setprecision(2) << "Subtotal ready to ship: $" << setw(10) << subtotal << endl;
-    cout << fixed << setprecision(2) << "Shipping and handling:  $" << setw(10) << shipCharge * readyOrder << endl;
-    total = subtotal + (shipCharge * readyOrder);
+    cout << fixed << setprecision(2) << "Shipping and handling:  $" << setw(10) << shipCost << endl;
     cout << fixed << setprecision(2) << "Total shipping charges: $" << setw(10) << total << endl;
-
 }
 
 int main()
 {
-    int numOrder = 0, numStock = 0;
-    double shipCharge = 0, total = 0, subTotal = 0;
+    int numOrder, numStock;
+    double shipCharge;
     readSpools(numOrder, numStock, shipCharge);
     displaySpools(numOrder, numStock, shipCharge);
 }
