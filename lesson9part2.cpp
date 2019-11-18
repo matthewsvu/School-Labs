@@ -24,13 +24,13 @@ unsigned int readInValue(ifstream &input, double &presentValue, double &interest
         if(presentValue <= 0 || interestRate <= 0 || months <= 0) // checks if info is valid
         {
             cout << fixed << setprecision(2) << presentValue << " " << fixed << setprecision(3) <<
-            interestRate << " " << months << endl;
+                 interestRate << " " << months << endl;
             cout << "One or more of the above values are not greater than zero\n";
             return 2; // returns error val;
         }
         return 1; // if successful returns 1
     }
-        return 0; // returns after file is done reading in
+    return 0; // returns after file is done reading in
 }
 // output display function uses output as reference in main function
 void writeOutput(ofstream &output, double present, double rate, int months)
@@ -38,7 +38,7 @@ void writeOutput(ofstream &output, double present, double rate, int months)
     double interestRate = rate / 100; // divides the rate into interest used to calculate future value
     double future = futureValue(present, interestRate, months);
     output << fixed << setprecision(2) << future << "\t" << present << "\t" <<
-    fixed << setprecision(3) << rate << "\t" << months << endl;
+           fixed << setprecision(3) << rate << "\t" << months << endl;
 }
 
 int main()
