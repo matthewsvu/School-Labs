@@ -1,3 +1,8 @@
+/*
+Program will fill out a 2d array and find the smallest values in each row
+find the average of the numbers within the 2d array, find the average for each column
+and display them to the user.
+*/
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -40,15 +45,15 @@ int readFile(double values[][MAX_COLUMNS], int maxRows, string inputFileName)
 double average(double values[][MAX_COLUMNS], int numberRows)
 {
     double sum = 0;
-    double total = MAX_COLUMNS * numberRows;
-    for(int j = 0; j < numberRows; j++)
+    double total = MAX_COLUMNS * numberRows; // calcs the total num of columns
+    for(int j = 0; j < numberRows; j++) // // traverses y axis of array
     {
-        for(int i = 0; i < MAX_COLUMNS; i++)
+        for(int i = 0; i < MAX_COLUMNS; i++) // traverses x axis and adds values together
         {
             sum += values[j][i];
         }
     }
-    double average = sum / total;
+    double average = sum / total; // returns the average
     return average;
 }
 // average for a specified column (column)
@@ -57,7 +62,7 @@ double columnAverage(double values[][MAX_COLUMNS], int column, int numberRows)
     double sum = 0, average;
     for(int i = 0; i < numberRows; i++) // traverses the y axis of 2d array and adds it to sum
     {
-        sum += values[i][column];
+        sum += values[i][column]; // adds them together
     }
     average = sum / numberRows; // gets average by dividing by number of rows
     return average;
